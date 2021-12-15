@@ -153,24 +153,14 @@ public class UpdateCandidate {
 				String partyName=textField_3.getText();
 				String contactno=textField_2.getText();
 				Candidate a=new Candidate(id,name,contactno,partyName);
-				if(id.length() == 0 || name.length() == 0  || partyName.length() == 0 
-            			|| contactno.length() == 0 ) {
-                	
-                    JOptionPane.showMessageDialog(btnNewButton,"Fill in all the Details");
-                }
-				else if(id.length()<4) {
-            		
-                    JOptionPane.showMessageDialog(btnNewButton,"Candidate ID should have minimum of 4 characters");
-            	}
-                 else if(contactno.length()<10) {
-            		
-                    JOptionPane.showMessageDialog(btnNewButton,"Contact No should have minimum of 10 characters");
-            	}
-				else{
-					int status= CandidateDao.del(a);
+				int status= CandidateDao.del(a);
+				if(status>0){
 					JOptionPane.showMessageDialog(frame, UpdateCandidate.this,"Candidate deleted successfully!", 0);
 					textField.setText("");textField_1.setText("");
 					textField_3.setText("");textField_2.setText("");
+				}
+				else{
+					JOptionPane.showMessageDialog(frame, UpdateCandidate.this,"Sorry, Unable to delete Candidate!", status);
 				}
 			}
 		});
