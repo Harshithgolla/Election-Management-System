@@ -17,6 +17,7 @@ contact varchar(10),
 primary key(Aadhar));
 
 cast_vote Table-
+
 create table cast_vote(
 id varchar(4)REFERENCES candidate (Id),
 aadhar varchar(12)REFERENCES voter (aadhar));
